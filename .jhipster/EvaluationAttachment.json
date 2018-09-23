@@ -1,0 +1,41 @@
+{
+    "name": "EvaluationAttachment",
+    "fields": [
+        {
+            "fieldName": "wording",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "path",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "evaluation",
+            "otherEntityName": "evaluation",
+            "otherEntityField": "wording"
+        }
+    ],
+    "changelogDate": "20180923161532",
+    "entityTableName": "evaluation_attachment",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Teacher.
+    -->
+    <changeSet id="20180923161528-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="teacher"
+                                 constraintName="fk_teacher_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="teachers_id"
+                                 baseTableName="teacher_classroom"
+                                 constraintName="fk_teacher_classroom_teachers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="teacher"/>
+        <addForeignKeyConstraint baseColumnNames="classrooms_id"
+                                 baseTableName="teacher_classroom"
+                                 constraintName="fk_teacher_classroom_classrooms_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="classroom"/>
+        
+        <addForeignKeyConstraint baseColumnNames="teachers_id"
+                                 baseTableName="teacher_subject"
+                                 constraintName="fk_teacher_subject_teachers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="teacher"/>
+        <addForeignKeyConstraint baseColumnNames="subjects_id"
+                                 baseTableName="teacher_subject"
+                                 constraintName="fk_teacher_subject_subjects_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="subject"/>
+        
+        <addForeignKeyConstraint baseColumnNames="evaluation_id"
+                                 baseTableName="teacher"
+                                 constraintName="fk_teacher_evaluation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="evaluation"/>
+
+    </changeSet>
+</databaseChangeLog>

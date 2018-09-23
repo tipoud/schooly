@@ -1,0 +1,77 @@
+{
+    "name": "Evaluation",
+    "fields": [
+        {
+            "fieldName": "wording",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "mark",
+            "otherEntityName": "mark",
+            "otherEntityRelationshipName": "evaluation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "attachment",
+            "otherEntityName": "evaluationAttachment",
+            "otherEntityRelationshipName": "evaluation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "teacher",
+            "otherEntityName": "teacher",
+            "otherEntityRelationshipName": "evaluation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "subject",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "evaluation"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "teacher",
+            "otherEntityName": "teacher",
+            "otherEntityField": "lastname"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "subject",
+            "otherEntityName": "subject",
+            "otherEntityField": "wording"
+        }
+    ],
+    "changelogDate": "20180923161531",
+    "entityTableName": "evaluation",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="subject">
+            <h2><span>Subject</span> {{subject.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Wording</span></dt>
+                <dd>
+                    <span>{{subject.wording}}</span>
+                </dd>
+                <dt><span>Abreviation</span></dt>
+                <dd>
+                    <span>{{subject.abreviation}}</span>
+                </dd>
+                <dt><span>Active</span></dt>
+                <dd>
+                    <span>{{subject.active}}</span>
+                </dd>
+                <dt><span>Skill</span></dt>
+                <dd>
+                    <span *ngFor="let skill of subject.skills; let last = last">
+                        <a [routerLink]="['/skill', skill?.id, 'view' ]">{{skill.wording}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Evaluation</span></dt>
+                <dd>
+                    <div *ngIf="subject.evaluationId">
+                        <a [routerLink]="['/evaluation', subject.evaluationId, 'view']">{{subject.evaluationId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/subject', subject.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

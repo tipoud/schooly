@@ -1,0 +1,60 @@
+{
+    "name": "Teacher",
+    "fields": [
+        {
+            "fieldName": "lastname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "firstname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "teacher"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "teacher",
+            "relationshipName": "classroom",
+            "otherEntityName": "classroom",
+            "otherEntityField": "wording",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "teacher",
+            "relationshipName": "subject",
+            "otherEntityName": "subject",
+            "otherEntityField": "wording",
+            "ownerSide": true
+        },
+        {
+            "relationshipName": "evaluation",
+            "otherEntityName": "evaluation",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180923161528",
+    "entityTableName": "teacher",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

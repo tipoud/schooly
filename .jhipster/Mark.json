@@ -1,0 +1,48 @@
+{
+    "name": "Mark",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nth",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "student",
+            "otherEntityName": "student",
+            "otherEntityField": "lastname"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "skill",
+            "otherEntityName": "skill",
+            "otherEntityField": "wording"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "evaluation",
+            "otherEntityName": "evaluation",
+            "otherEntityField": "wording"
+        }
+    ],
+    "changelogDate": "20180923161526",
+    "entityTableName": "mark",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
