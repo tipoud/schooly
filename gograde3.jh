@@ -1,0 +1,91 @@
+entity Area {
+	number Integer required
+    wording String required
+    active Boolean required
+}
+
+entity Student {
+	lastname String required
+    firstname String required
+    email1 String required
+    email2 String
+    birthdate LocalDate
+}
+
+entity Mark {
+	value Double required
+    nth Integer required
+}
+
+entity Skill {
+	wording String required
+    level1 String
+    level2 String
+    level3 String
+    level4 String
+	active Boolean required
+}
+
+entity Teacher {
+	lastname String required
+    firstname String required
+}
+
+entity Classroom {
+	level Integer required
+    wording String required
+    year Integer required
+    active Boolean required
+}
+
+entity Subject {
+	wording String required
+    abreviation String required
+    active Boolean required
+}
+
+entity Evaluation {
+	wording String required
+    comment String
+    status Integer required
+    date LocalDate required
+}
+
+entity EvaluationAttachment {
+	wording String required
+    type String
+    date LocalDate
+    path String
+}
+
+relationship OneToMany {
+	Area{skill(wording)} to Skill{area(wording)}
+    Evaluation{mark} to Mark{evaluation(wording)}
+    Classroom{student(lastname)} to Student{classroom(wording)}
+    Evaluation{attachment(wording)} to EvaluationAttachment{evaluation(wording)}
+    Evaluation{teacher(lastname)} to Teacher
+    Evaluation{subject(wording)} to Subject
+}
+
+relationship ManyToOne {
+	Mark{student(lastname)} to Student
+    Mark{skill(wording)} to Skill
+    Evaluation{teacher(lastname)} to Teacher
+    Evaluation{subject(wording)} to Subject
+}
+
+relationship OneToOne {
+	Teacher{user} to User{teacher}
+}
+
+relationship ManyToMany {
+	Subject{skill(wording)} to Skill{subject(wording)}
+    Teacher{classroom(wording)} to Classroom{teacher(lastname)}
+    Teacher{subject(wording)} to Subject{teacher(lastname)}
+}
+
+// Set pagination options
+paginate Student, Skill, Evaluation, Subject with infinite-scroll
+dto * with mapstruct
+service * with serviceClass
+
