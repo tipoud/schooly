@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-student-heading">Create or edit a Student</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!student.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="student.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastname">Lastname</label>
+                    <input type="text" class="form-control" name="lastname" id="field_lastname"
+                        [(ngModel)]="student.lastname" required/>
+                    <div [hidden]="!(editForm.controls.lastname?.dirty && editForm.controls.lastname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.lastname?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstname">Firstname</label>
+                    <input type="text" class="form-control" name="firstname" id="field_firstname"
+                        [(ngModel)]="student.firstname" required/>
+                    <div [hidden]="!(editForm.controls.firstname?.dirty && editForm.controls.firstname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.firstname?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email1">Email 1</label>
+                    <input type="text" class="form-control" name="email1" id="field_email1"
+                        [(ngModel)]="student.email1" required/>
+                    <div [hidden]="!(editForm.controls.email1?.dirty && editForm.controls.email1?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email1?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email2">Email 2</label>
+                    <input type="text" class="form-control" name="email2" id="field_email2"
+                        [(ngModel)]="student.email2" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_birthdate">Birthdate</label>
+                    <div class="input-group">
+                        <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker  #birthdateDp="ngbDatepicker" [(ngModel)]="student.birthdate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthdateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_classroom">Classroom</label>
+                    <select class="form-control" id="field_classroom" name="classroom" [(ngModel)]="student.classroomId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="classroomOption.id" *ngFor="let classroomOption of classrooms; trackBy: trackClassroomById">{{classroomOption.wording}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

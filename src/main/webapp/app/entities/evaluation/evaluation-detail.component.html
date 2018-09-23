@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="evaluation">
+            <h2><span>Evaluation</span> {{evaluation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Wording</span></dt>
+                <dd>
+                    <span>{{evaluation.wording}}</span>
+                </dd>
+                <dt><span>Comment</span></dt>
+                <dd>
+                    <span>{{evaluation.comment}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{evaluation.status}}</span>
+                </dd>
+                <dt><span>Date</span></dt>
+                <dd>
+                    <span>{{evaluation.date}}</span>
+                </dd>
+                <dt><span>Teacher</span></dt>
+                <dd>
+                    <div *ngIf="evaluation.teacherId">
+                        <a [routerLink]="['/teacher', evaluation.teacherId, 'view']">{{evaluation.teacherLastname}}</a>
+                    </div>
+                </dd>
+                <dt><span>Subject</span></dt>
+                <dd>
+                    <div *ngIf="evaluation.subjectId">
+                        <a [routerLink]="['/subject', evaluation.subjectId, 'view']">{{evaluation.subjectWording}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/evaluation', evaluation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

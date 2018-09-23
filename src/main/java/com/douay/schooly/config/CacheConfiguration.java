@@ -41,6 +41,27 @@ public class CacheConfiguration {
             cm.createCache(com.douay.schooly.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.douay.schooly.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.douay.schooly.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Area.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Area.class.getName() + ".skills", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Student.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Mark.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Skill.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Skill.class.getName() + ".subjects", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Teacher.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Teacher.class.getName() + ".classrooms", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Teacher.class.getName() + ".subjects", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Classroom.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Classroom.class.getName() + ".students", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Classroom.class.getName() + ".teachers", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Subject.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Subject.class.getName() + ".skills", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Subject.class.getName() + ".teachers", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Evaluation.class.getName(), jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Evaluation.class.getName() + ".marks", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Evaluation.class.getName() + ".attachments", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Evaluation.class.getName() + ".teachers", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.Evaluation.class.getName() + ".subjects", jcacheConfiguration);
+            cm.createCache(com.douay.schooly.domain.EvaluationAttachment.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

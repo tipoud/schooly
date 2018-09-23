@@ -1,0 +1,59 @@
+{
+    "name": "Skill",
+    "fields": [
+        {
+            "fieldName": "wording",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "level1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "level2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "level3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "level4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "area",
+            "otherEntityName": "area",
+            "otherEntityField": "wording"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "subject",
+            "otherEntityName": "subject",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "skill"
+        }
+    ],
+    "changelogDate": "20180923161527",
+    "entityTableName": "skill",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="mark">
+            <h2><span>Mark</span> {{mark.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Value</span></dt>
+                <dd>
+                    <span>{{mark.value}}</span>
+                </dd>
+                <dt><span>Nth</span></dt>
+                <dd>
+                    <span>{{mark.nth}}</span>
+                </dd>
+                <dt><span>Student</span></dt>
+                <dd>
+                    <div *ngIf="mark.studentId">
+                        <a [routerLink]="['/student', mark.studentId, 'view']">{{mark.studentLastname}}</a>
+                    </div>
+                </dd>
+                <dt><span>Skill</span></dt>
+                <dd>
+                    <div *ngIf="mark.skillId">
+                        <a [routerLink]="['/skill', mark.skillId, 'view']">{{mark.skillWording}}</a>
+                    </div>
+                </dd>
+                <dt><span>Evaluation</span></dt>
+                <dd>
+                    <div *ngIf="mark.evaluationId">
+                        <a [routerLink]="['/evaluation', mark.evaluationId, 'view']">{{mark.evaluationWording}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/mark', mark.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

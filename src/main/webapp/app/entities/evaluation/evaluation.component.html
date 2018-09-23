@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span>Evaluations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-evaluation" [routerLink]="['/evaluation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Evaluation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="evaluations">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="wording"><span>Wording</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="comment"><span>Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="status"><span>Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="date"><span>Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="teacherLastname"><span>Teacher</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="subjectWording"><span>Subject</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let evaluation of evaluations ;trackBy: trackId">
+                <td><a [routerLink]="['/evaluation', evaluation.id, 'view' ]">{{evaluation.id}}</a></td>
+                <td>{{evaluation.wording}}</td>
+                <td>{{evaluation.comment}}</td>
+                <td>{{evaluation.status}}</td>
+                <td>{{evaluation.date | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="evaluation.teacherId">
+                        <a [routerLink]="['../teacher', evaluation.teacherId , 'view' ]" >{{evaluation.teacherLastname}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="evaluation.subjectId">
+                        <a [routerLink]="['../subject', evaluation.subjectId , 'view' ]" >{{evaluation.subjectWording}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/evaluation', evaluation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/evaluation', evaluation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'evaluation/'+ evaluation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
